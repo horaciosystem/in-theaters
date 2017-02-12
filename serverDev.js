@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 
 
 const API_KEY = '7681872eb59176b720246f7fd67ddc4d';
-const API_URL = 'https://api.themoviedb.org/3/movie/upcoming';
+const API_URL = 'https://api.themoviedb.org/3/movie/now_playing';
 
 const PARAMS = '?api_key=' + API_KEY;
 const REQUEST_URL = API_URL + PARAMS;

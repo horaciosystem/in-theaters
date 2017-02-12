@@ -29,11 +29,17 @@
     height: 100%;
     width: 90%;
   }
+
 }
 
 .header {
-  width: 130%;
-  background: dodgerblue;
+  width: 150%;
+  height: 100px;
+  background: #68A5B9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .movies-container {
@@ -47,16 +53,17 @@
   justify-content: space-around;
 }
 
-.flex-item {
-  background: tomato;
-  padding: 5px;
-  width: 200px;
-  height: 150px;
-  margin-top: 10px;
-  
-  line-height: 150px;
-  color: white;
-  font-weight: bold;
-  font-size: 3em;
-  text-align: center;
+.ant-card {
+  margin-bottom: 10px;
+}
+
+.movie-item {
+  display: flex;
+  flex-flow: row;
+}
+
+.detail-panel {
+  width: 500px;  
+  margin-block-start: 10px;
+  background: white;  
 }
