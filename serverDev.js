@@ -1,10 +1,11 @@
-var path = require('path');
-var webpack = require('webpack');
-var express = require('express');
-var config = require('./webpack.config.dev');
+const path = require('path');
+const webpack = require('webpack');
+const express = require('express');
+const config = require('./webpack.config.dev');
+const https = require('https');
 
-var app = express();
-var compiler = webpack(config);
+const app = express();
+const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
@@ -17,24 +18,26 @@ app.get('/', function(req, res) {
 });
 
 
-const API_KEY = '7waqfqbprs7pajbz28mqf6vz';
-const API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json';
-const PAGE_SIZE = 25;
-const PARAMS = '?apikey=' + API_KEY + '&page_limit=' + PAGE_SIZE;
+const API_KEY = '7681872eb59176b720246f7fd67ddc4d';
+const API_URL = 'https://api.themoviedb.org/3/movie/upcoming';
+
+const PARAMS = '?api_key=' + API_KEY;
 const REQUEST_URL = API_URL + PARAMS;
 
-app.get('/movies', function(req, res) {
-  
-  res.json([
-    {
-      id: 1,
-      title: 'godzila',
-      year: 2015,
-      posters: {
-        thumbnail: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'
-      }
-    }
-  ]);
+app.get('/movies', function(req, res) {  
+    return https.get(REQUEST_URL, (response) => {
+      // Continuously update stream with data
+      var body = '';
+      response.on('data', function(d) {
+        body += d;
+      });
+      response.on('end', function() {
+        // Data reception is done, do whatever with it!        
+        res.json(body);
+      });
+    }).on('error', (e) => {
+      console.error(e);
+    });
 });
 
 app.listen(3000, function(err) {

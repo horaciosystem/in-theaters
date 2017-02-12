@@ -2,15 +2,14 @@ import  {observable, computed, reaction, autorun} from 'mobx';
 import fetch from 'isomorphic-fetch';
 
 
-
 class MovieStore {
-  @observable movies = [];
+  @observable movies = null;
 
-  fetchMovies() {
+  fetchMovies() {    
     return fetch('/movies')
       .then(response => response.json())
-      .then(moviesJson => this.movies = moviesJson)
-      .catch(e => console.log(e))
+      .then(moviesJson => this.movies = JSON.parse(moviesJson))
+      .catch(e => console.log(e));
   }
     
 }
