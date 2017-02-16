@@ -4,13 +4,14 @@
 
 html,
 body {
-  background-color: #68A5B9;
+  background-color: #F4F4F4;
   height: 100%;
   display: flex;
   justify-content: center;
   width: 100%;
   font: serif;
-  font-family: 'Raleway', serif;
+  font-family: 'Raleway', serif;  
+  margin: 0px;
 }
 
 #root {

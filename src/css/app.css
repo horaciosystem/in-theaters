@@ -1,5 +1,19 @@
 @import '~antd/dist/antd.css';
 
+.main-container {  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;  
+  
+  text-align: center;
+  align-items: center; 
+  flex-flow: column;
+  height: 100%;
+  width: 1000%;
+}
+
 .app-container {  
   display: -webkit-box;
   display: -moz-box;
@@ -11,8 +25,26 @@
   align-items: center; 
   flex-flow: column;
   height: 100%;
-  width: 70%;
+  width: 60%;
 }
+
+@media screen 
+  and (min-width: 900px) 
+  and (max-width: 1600px)  {
+     .app-container {  
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;  
+        
+        text-align: center;
+        align-items: center; 
+        flex-flow: column;
+        height: 100%;
+        width: 80%;
+      }
+  }
 
 @media (max-width: 900px) {
   .app-container {  
@@ -22,18 +54,16 @@
     display: -webkit-flex;
     display: flex;  
     
-    -webkit-flex-flow: column;
-    flex-flow: column;
     text-align: center;
     align-items: center; 
+    flex-flow: column;
     height: 100%;
     width: 90%;
   }
-
 }
 
 .header {
-  width: 150%;
+  width: 100%;
   height: 100px;
   background: #68A5B9;
   color: white;
@@ -50,20 +80,46 @@
   display: -webkit-flex;
   display: flex;
   flex-flow: row wrap;  
-  justify-content: space-around;
+  justify-content: space-around;  
 }
 
 .ant-card {
   margin-bottom: 10px;
+  transition: 0.5s;
 }
 
-.movie-item {
-  display: flex;
-  flex-flow: row;
+.movie-item {  
+  display: flex;    
+  flex-direction: row;  
+  background-color: #fff;  
+  min-width: 480px;  
+  min-height: 280px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.detail-panel {
-  width: 500px;  
-  margin-block-start: 10px;
-  background: white;  
+.image-content {
+  max-width: 185px;  
+  height: 280px; 
+  margin-right: 10px;
+}
+
+.image-content img {
+  max-width: 185px;  
+  height: 280px; 
+}
+
+.movie-detail {
+  max-width: 290px;
+}
+
+.overview {
+  word-wrap: break-word;
+  white-space: normal;
+  color: #4d4d4d;
+  margin-top: 20px;  
+  font-size: 0.9em;
+  text-overflow: ellipsis;
+  overflow: hidden;  
+  text-align: start;
 }

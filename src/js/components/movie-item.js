@@ -3,46 +3,26 @@ import {observer} from 'mobx-react';
 import { Card } from 'antd';
 
 @observer
-export default class MovieList extends Component {
-  state = {isDetailOpen: false};
+export default class MovieItem extends Component {
 
-  toogleDetails = () => {
-    console.warn('teste');
-    this.setState((prevState, prevProps) => {
-      return {
-        isDetailOpen: !prevState.isDetailOpen
-      };
-    });
+  componentDidMount() {
+    this.props.movieStore.fetchMovies();
   }
 
   render() {
-    const movie = this.props.movie;
+    const { movie, movieSelected } = this.props;    
     return (
       <div className="movie-item">
-        <Card style={{ width: 240 }} bodyStyle={{ padding: 0 }} onClick={this.toogleDetails}>
-          <div className="custom-image">
-            <img width="100%" src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}/>
-          </div>
-          <div className="custom-card">
-            <h3>{movie.title}</h3>
-            <p>{movie.release_date}</p>
-          </div>        
-        </Card>
-        {this.state.isDetailOpen &&         
-          <div className="detail-panel">
-            <p>{movie.release_date}</p>
-
-            <p>{movie.release_date}</p>
-
-            <p>{movie.release_date}</p>
-            <p>{movie.release_date}</p>
-
-            <p>{movie.release_date}</p>
-
-            <p>{movie.release_date}</p>
-            <p>{movie.release_date}</p>
-          </div>
-          }
+        <div className="image-content">
+          <img src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}/>
+        </div>
+        <div className="movie-detail">
+          <h3>{movie.title}</h3>            
+          <p>{movie.vote_average}</p>
+          <p>{movie.release_date}</p>
+          <p className="genres">Generos</p>
+          <p className="overview">{movie.overview}</p>
+        </div>                
       </div>
     );
   }

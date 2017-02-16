@@ -9,12 +9,14 @@ export default class App extends Component {
   
   render() {
     return (
-      <div className="app-container">
-        <Header className="header"><h2>Movies in Theaters</h2></Header> 
-        <Content>
-          <MovieList movieStore={movieStore} />
-        </Content>
-        <Footer>Footer</Footer>
+      <div className="main-container">
+        <Header className="header"><h1>Movies in Theaters</h1></Header> 
+        <div className="app-container">        
+          <Content>
+            <MovieList movieStore={movieStore} />
+          </Content>
+          <Footer>Footer</Footer>
+        </div>
       </div>
     )
   }
