@@ -1,9 +1,9 @@
 import  {observable, computed, action, autorun} from 'mobx';
 import fetch from 'isomorphic-fetch';
-
+import MovieItemStore from './movie-item-store';
 
 class MovieStore {  
-  @observable movies = null;  
+  @observable movies = [];  
   @observable isLoading = true;
   @observable watchListSelected = false;
   
@@ -13,29 +13,30 @@ class MovieStore {
     return fetch('/movies')
       .then(response => response.json())
       .then(moviesJson => {
-        this.movies = JSON.parse(moviesJson)
+        const movies = JSON.parse(moviesJson);
+        movies.results.forEach(this.addItem);      
         this.isLoading = false;
         console.warn('loading', this.isLoading);
       })
       .catch(e => console.log(e));
   }
 
-  // @computed get watchList() {
-  //   return this.movies.filter(movie => movie.watchLater);
-  // }
-
-  // @action.bound
-  // selectWatchList() {    
-  //   this.watchListSelected = true;
-  // }
-
-  @action.bound
-  addToWatchList(movie) {
-    //TODO testing
-    this.movies.results = this.movies.results.filter(item => item.id !== movie.id);
+  addItem = (movie) => {
+    const item = new MovieItemStore();
+    item.id = movie.id;
+    item.title = movie.title;
+    item.vote_average = movie.vote_average;
+    item.release_date = movie.release_date;   
+    item.poster_path = movie.poster_path;
+    this.movies.push(item);
   }
 
-    
+  @computed get watchListCount() {        
+    return this.movies ? this.movies.filter(movie => movie.watchLater).length : 0;
+  }
+
+
 }
+
 const movieStore = new MovieStore();
 export default movieStore;

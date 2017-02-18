@@ -133,3 +133,7 @@
   overflow: hidden;  
   text-align: start;
 }
+
+.ant-badge {
+  margin-left: 3px;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/app.css';
-import { Layout } from 'antd';
+import { Layout, Badge } from 'antd';
 const { Header, Footer, Content } = Layout;
 import MovieList from './movie-list';
 import { observer } from 'mobx-react';
@@ -31,7 +31,9 @@ export default class App extends Component {
             <a onClick={this.inTheatersHandle}>In theaters</a>
           </div>
           <div>
-            <a onClick={this.watchListHandle}>Watchlist</a>
+            <a onClick={this.watchListHandle}>Watchlist 
+              <Badge count={this.props.movieStore.watchListCount} style={{ backgroundColor: '#87d068'}} />
+            </a>            
           </div>
         </Header> 
         <div className="app-container">        

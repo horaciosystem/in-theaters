@@ -5,12 +5,8 @@ import { Card } from 'antd';
 @observer
 export default class MovieItem extends Component {
 
-  handleWatchLatter = (e) => {
-    this.props.onAddWatchList(this.props.movie);
-  }
-
   render() {
-    const { movie } = this.props;
+    const movie = this.props.movie;
     return (
       <div className="movie-item">
         <div className="image-content">
@@ -18,7 +14,7 @@ export default class MovieItem extends Component {
         </div>
         <div className="movie-detail">
           <h3>{movie.title}</h3>
-          <button onClick={this.handleWatchLatter} >
+          <button onClick={() => movie.watchLater = !movie.watchLater} >
             Add to <strong>watchlist</strong>
           </button>
 
