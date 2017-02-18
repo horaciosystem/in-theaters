@@ -65,11 +65,21 @@
 .header {
   width: 100%;
   height: 100px;
-  background: #68A5B9;
+  background: #081C24;
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.header div {
+  margin-right: 30px;  
+}
+
+.header a {
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Source Sans Pro', 'Arial', sans-serif;
+  font-size: 15px;
 }
 
 .movies-container {

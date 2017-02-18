@@ -3,17 +3,44 @@ import '../../css/app.css';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 import MovieList from './movie-list';
-import movieStore from '../stores/movie-store';
+import { observer } from 'mobx-react';
 
+@observer
 export default class App extends Component {
   
+  inTheatersHandle = () => {
+    console.warn('todo')
+  }
+
+  watchListHandle = () => {
+    console.warn('todo')
+  }
+
+  componentDidMount() {
+    this.props.movieStore.fetchMovies();
+  }  
+
   render() {
     return (
       <div className="main-container">
-        <Header className="header"><h1>Movies in Theaters</h1></Header> 
+        <Header className="header">
+          <div>
+            <h1>Movies</h1>
+          </div>
+          <div>
+            <a onClick={this.inTheatersHandle}>In theaters</a>
+          </div>
+          <div>
+            <a onClick={this.watchListHandle}>Watchlist</a>
+          </div>
+        </Header> 
         <div className="app-container">        
           <Content>
-            <MovieList movieStore={movieStore} />
+            {this.props.movieStore.isLoading ? (
+              <div>Loading...</div>
+            ) : (
+              <MovieList movieStore={this.props.movieStore} />
+            )}
           </Content>
           <Footer>Footer</Footer>
         </div>

@@ -1,52 +1,34 @@
 import React, { Component } from 'react';
 import MovieItem from './movie-item';
-import { observer } from 'mobx-react';
 
-@observer
 export default class MovieList extends Component {  
-  
+
   render() {
-    const movieStore = this.props.movieStore;
-    console.log('render list...', movieStore.movies);
-    if (movieStore.movies) {
-      return(
-        <div className="movies-container">    
-          {this.buildItems()}
-        </div>
-      );
-    } else {
-      return <div>Loading...</div>;
-    }
+    const movies = this.props.movieStore.movies;
+    console.log('render list...',  this.props.movieStore.movies.results);    
+    return ( 
+      <div>     
+        {movies.results.length > 0 ? (
+          <div className="movies-container">    
+            {this.buildItems(movies)}
+          </div>
+        ) : (
+          <div>Sem items.</div> 
+        )}
+      </div>
+    );
   }
 
-  componentDidMount() {
-    this.props.movieStore.fetchMovies();
+  handleAddWatchlist = (movie) => {
+    this.props.movieStore.addToWatchList(movie);
   }
 
-  movieSelected = (movie) => {
-    const movieStore = this.props.movieStore;
-    if (movieStore.movieSelected && movieStore.movieSelected.id) {
-      return movieStore.movieSelected.id === movie.id
-    } else 
-      return false;
-  }
-
-  onSelectMovie = (movie) => {
-    const movieStore = this.props.movieStore;
-    if (movieStore.movieSelected && movieStore.movieSelected.id === movie.id)
-      this.props.movieStore.setSelectedMovie(null);
-    else 
-      this.props.movieStore.setSelectedMovie(movie);
-
-  }
-
-  buildItems = () => {
-    return this.props.movieStore.movies.results.map(movie =>
+  buildItems = (movies) => {    
+    return movies.results.map(movie =>
       <MovieItem 
         key={`movie-item-${movie.id}`}
-        movie={movie}
-        movieSelected={this.movieSelected(movie)}
-        onSelectMovie={this.onSelectMovie}
+        movie={movie} 
+        onAddWatchList={this.handleAddWatchlist}    
       />
     )
   }

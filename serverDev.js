@@ -32,7 +32,7 @@ app.get('/movies', function(req, res) {
         body += d;
       });
       response.on('end', function() {
-        // Data reception is done, do whatever with it!        
+        // Data reception is done, do whatever with it!                
         res.json(body);
       });
     }).on('error', (e) => {
