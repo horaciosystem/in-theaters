@@ -9,11 +9,11 @@ import { observer } from 'mobx-react';
 export default class App extends Component {
   
   inTheatersHandle = () => {
-    console.warn('todo')
+    console.warn('//Todo')
   }
 
   watchListHandle = () => {
-    console.warn('todo')
+    console.warn('//Todo')
   }
 
   componentDidMount() {

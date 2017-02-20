@@ -14,7 +14,7 @@ class MovieStore {
       .then(response => response.json())
       .then(moviesJson => {
         const movies = JSON.parse(moviesJson);
-        movies.results.forEach(this.addItem);      
+        this.movies = movies.results.map(this.addItem);
         this.isLoading = false;
         console.warn('loading', this.isLoading);
       })
@@ -28,7 +28,7 @@ class MovieStore {
     item.vote_average = movie.vote_average;
     item.release_date = movie.release_date;   
     item.poster_path = movie.poster_path;
-    this.movies.push(item);
+    return item;
   }
 
   @computed get watchListCount() {        
