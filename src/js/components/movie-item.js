@@ -17,7 +17,6 @@ export default class MovieItem extends Component {
           <button onClick={() => movie.watchLater = !movie.watchLater} >
             Add to <strong>watchlist</strong>
           </button>
-
           <p>{movie.vote_average}</p>
           <p>{movie.release_date}</p>
           <p className="genres">Generos</p>

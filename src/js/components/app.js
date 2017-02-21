@@ -9,11 +9,11 @@ import { observer } from 'mobx-react';
 export default class App extends Component {
   
   inTheatersHandle = () => {
-    console.warn('//Todo')
+    this.props.movieStore.toogleWatchList();
   }
 
   watchListHandle = () => {
-    console.warn('//Todo')
+    this.props.movieStore.toogleWatchList();
   }
 
   componentDidMount() {
@@ -41,6 +41,7 @@ export default class App extends Component {
             {this.props.movieStore.isLoading ? (
               <div>Loading...</div>
             ) : (
+
               <MovieList movieStore={this.props.movieStore} />
             )}
           </Content>

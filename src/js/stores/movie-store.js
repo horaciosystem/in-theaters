@@ -5,7 +5,7 @@ import MovieItemStore from './movie-item-store';
 class MovieStore {  
   @observable movies = [];  
   @observable isLoading = true;
-  @observable watchListSelected = false;
+  @observable watchList = false;
   
   @action.bound
   fetchMovies() {    
@@ -33,6 +33,15 @@ class MovieStore {
 
   @computed get watchListCount() {        
     return this.movies ? this.movies.filter(movie => movie.watchLater).length : 0;
+  }
+
+  @action.bound
+  toogleWatchList() {
+    this.watchList = !this.watchList;
+  }
+  
+  @computed get listWatchLatter() {    
+    return this.movies.filter(movie => movie.watchLater);
   }
 
 

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import MovieItem from './movie-item';
 import movieItemStore from '../stores/movie-item-store';
+import {observer} from 'mobx-react';
 
+@observer
 export default class MovieList extends Component {  
 
   render() {
-    const movies = this.props.movieStore.movies;
-    console.log('render list...',  this.props.movieStore.movies);    
+    let {movies, watchList} = this.props.movieStore;
+    if (watchList) {
+      movies = this.props.movieStore.listWatchLatter;
+    }
+    console.log('render list...', movies);
     return ( 
       <div>     
         {movies.length > 0 ? (

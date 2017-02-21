@@ -1,4 +1,5 @@
 import  {observable, computed, action, autorun} from 'mobx';
+import fetch from 'isomorphic-fetch';
 
 export default class MovieItemStore {
   id = 0;
